@@ -15,7 +15,6 @@ var Bonus = function(x, y) {
     this.y = y;
     this.sprite = 'images/Star.png';
 };
-
 var character = function(a, b, c) {
     ctx.drawImage(a, b, c);
 };
@@ -48,7 +47,6 @@ Enemy.prototype.checkcol = function() {
     if (lives === 0) {
         reset();
     }
-
 };
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
@@ -161,9 +159,7 @@ var stats = function(score, lives) {
 };
 // Initial stats
 stats(0, 3);
-// checking collision or level up
 allEnemies.push(enemy);
-// increase difficulty
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
 document.addEventListener('keyup', function(e) {
