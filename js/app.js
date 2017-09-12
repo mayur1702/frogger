@@ -48,8 +48,7 @@ Enemy.prototype.checkcol = function() {
     if (lives === 0) {
         reset();
     }
-    if (j !== 0)
-        player.checkpos();
+
 };
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
@@ -102,6 +101,8 @@ Player.prototype.update = function() {
             this.sprite = "images/char-princess-girl.png";
             break;
     }
+    if (j !== 0)
+        this.checkpos();
 };
 Player.prototype.render = function() {
     character(Resources.get(this.sprite), this.x, this.y);
@@ -149,7 +150,7 @@ var reset = function() {
     lives = 3;
     score = 0;
     level = 1;
-    nextLevel(0);
+    Enemy(0);
     stats(0, 3);
 };
 // Displaying stats
