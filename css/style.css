@@ -1,0 +1,18 @@
+body {
+    text-align: center;
+}
+img{
+	margin-bottom: 0%;
+	height: 150px;
+}
+#scores,#lives,#level{
+	position: absolute;
+	font-size: 3em;
+	color: darkblue;
+}
+#lives{
+	margin-top:10%;
+}
+#level{
+	margin-top: 20%;
+}
