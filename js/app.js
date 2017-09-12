@@ -14,7 +14,6 @@ var Bonus = function(x, y) {
     this.x = x;
     this.y = y;
     this.sprite = 'images/Star.png';
-
 };
 
 var character = function(a, b, c) {
@@ -140,7 +139,6 @@ var stats = function(score, lives) {
 // Initial stats
 stats(0, 3);
 // checking collision or level up
-
 var checkpos = function() {
     if (Math.abs(player.x - bonus.x) < 80 && Math.abs(player.y - bonus.y) < 50 && lives > 0) {
         score += 50;
