@@ -40,7 +40,7 @@ Enemy.prototype.checkcol = function() {
     if (player.y < 65) {
         level += 1;
         console.log(score);
-        nextLevel(level);
+        this.nextLevel(level);
         stats(score, lives);
         player.x = PLAYER_X[Math.floor(Math.random() * PLAYER_X.length)];
         player.y = PLAYER_Y[Math.floor(Math.random() * PLAYER_Y.length)];
@@ -49,12 +49,26 @@ Enemy.prototype.checkcol = function() {
         reset();
     }
     if (j !== 0)
-        checkpos();
+        player.checkpos();
 };
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
     character(Resources.get(this.sprite), this.x, this.y);
     this.checkcol();
+};
+Enemy.prototype.nextLevel=function(strength){
+    // remove all previous enemies on canvas
+    allEnemies.length = 0;
+    f = 1;
+    j = 1;
+    bonus.x = PLAYER_X[Math.floor(Math.random() * PLAYER_X.length)];
+    bonus.y = POSSIBLE[Math.floor(Math.random() * POSSIBLE.length)];
+    // load new set of enemies
+    for (var i = 0; i <= strength; i++) {
+        var enemy = new Enemy(0, POSSIBLE[Math.floor(Math.random() * POSSIBLE.length)], Math.random() * 256);
+        allEnemies.push(enemy);
+        console.log("yes");
+    }
 };
 // Draw the bonus objects on screen
 Bonus.prototype.render = function(f) {
@@ -90,7 +104,15 @@ Player.prototype.update = function() {
     }
 };
 Player.prototype.render = function() {
-    character(Resources.get(this.sprite), this.x, this.y);
+    character(Resources.get(this.sprite), this.x, this.y);    
+};
+Player.prototype.checkpos=function(){
+if (Math.abs(this.x - bonus.x) < 80 && Math.abs(this.y - bonus.y) < 50 && lives > 0) {
+        score += 50;
+        j = 0;
+        f = 0;
+        stats(score, lives);
+    }
 };
 Player.prototype.handleInput = function(keyPress) {
     if (keyPress == 'left' && this.x >= 80) {
@@ -139,29 +161,8 @@ var stats = function(score, lives) {
 // Initial stats
 stats(0, 3);
 // checking collision or level up
-var checkpos = function() {
-    if (Math.abs(player.x - bonus.x) < 80 && Math.abs(player.y - bonus.y) < 50 && lives > 0) {
-        score += 50;
-        j = 0;
-        f = 0;
-        stats(score, lives);
-    }
-};
 allEnemies.push(enemy);
 // increase difficulty
-var nextLevel = function(strength) {
-    // remove all previous enemies on canvas
-    allEnemies.length = 0;
-    f = 1;
-    j = 1;
-    bonus.x = PLAYER_X[Math.floor(Math.random() * PLAYER_X.length)];
-    bonus.y = POSSIBLE[Math.floor(Math.random() * POSSIBLE.length)];
-    // load new set of enemies
-    for (var i = 0; i <= strength; i++) {
-        var enemy = new Enemy(0, POSSIBLE[Math.floor(Math.random() * POSSIBLE.length)], Math.random() * 256);
-        allEnemies.push(enemy);
-    }
-};
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
 document.addEventListener('keyup', function(e) {
