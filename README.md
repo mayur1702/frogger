@@ -8,6 +8,15 @@ Installation
 $ git clone https://github.com/xc1702/frogger.git
 $ cd frogger
 $ start index.html
+
 -->DOWNLOAD ZIP 
 Extract the folder
 Double click on ***index.html***
+
+Instructions
+==============================
+Aim: To reach water without collision with bugs
+Choose your player by clicking on them.
+Move in the desired directions using left,right,up and down keys
+Increase score by collecting stars
+You have 3 lives ,Make it count!!
