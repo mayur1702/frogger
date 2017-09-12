@@ -56,7 +56,7 @@ Enemy.prototype.render = function() {
     character(Resources.get(this.sprite), this.x, this.y);
     this.checkcol();
 };
-Enemy.prototype.nextLevel=function(strength){
+Enemy.prototype.nextLevel = function(strength) {
     // remove all previous enemies on canvas
     allEnemies.length = 0;
     f = 1;
@@ -104,10 +104,10 @@ Player.prototype.update = function() {
     }
 };
 Player.prototype.render = function() {
-    character(Resources.get(this.sprite), this.x, this.y);    
+    character(Resources.get(this.sprite), this.x, this.y);
 };
-Player.prototype.checkpos=function(){
-if (Math.abs(this.x - bonus.x) < 80 && Math.abs(this.y - bonus.y) < 50 && lives > 0) {
+Player.prototype.checkpos = function() {
+    if (Math.abs(this.x - bonus.x) < 80 && Math.abs(this.y - bonus.y) < 50 && lives > 0) {
         score += 50;
         j = 0;
         f = 0;
